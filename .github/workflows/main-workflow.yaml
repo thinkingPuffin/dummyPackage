@@ -7,6 +7,9 @@ on:
 
 name: Main-Workflow
 
+permissions:
+  contents: write
+
 jobs:
   increase-version:
     if: github.event_name != 'pull_request'
