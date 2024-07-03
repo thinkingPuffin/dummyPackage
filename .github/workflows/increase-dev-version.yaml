@@ -22,7 +22,7 @@ jobs:
       - name: Install packages
         run: |
           install.packages("usethis")
-       shell: Rscript {0}
+        shell: Rscript {0}
 
       - name: Change DESCRIPTION file
         run: |
