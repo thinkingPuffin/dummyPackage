@@ -7,7 +7,7 @@ on:
 
 name: Main-Workflow
 
-permissions: write
+permissions: write-all
 
 jobs:
   increase-version:
