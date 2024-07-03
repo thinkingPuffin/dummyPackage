@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+
+name: Main-Workflow
+
+jobs:
+  increase-version:
+    if: github.event_name != 'pull_request'
+    uses: ./.github/workflows/increase-dev-version.yaml
+  R-CMD-Check:
+    if: ${{ always() }}
+    needs: [increase-version]
+    uses: ./.github/workflows/R-CMD-check.yaml
+  pkgdown:
+    if: ${{ always() }}
+    needs: [increase-version]
+    uses:  ./.github/workflows/pkgdown.yaml
