@@ -8,8 +8,8 @@
 #' @export
 #'
 #' @examples
-#' my_function(1)
-#' my_function(10)
+#' dummy_fun(1)
+#' dummy_fun(10)
 dummy_fun <- function(x) {
   x + 1
 }

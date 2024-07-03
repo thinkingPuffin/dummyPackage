@@ -16,6 +16,6 @@ numeric output
 adds 1 to the input
 }
 \examples{
-my_function(1)
-my_function(10)
+dummy_fun(1)
+dummy_fun(10)
 }
