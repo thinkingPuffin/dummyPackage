@@ -2,3 +2,5 @@ url: https://felixmil.github.io/dummyPackage/
 template:
   bootstrap: 5
 
+development:
+  mode: auto
