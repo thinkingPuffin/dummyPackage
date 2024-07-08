@@ -13,6 +13,8 @@ jobs:
   increase-version:
     if: github.event_name != 'pull_request'
     uses: ./.github/workflows/increase-dev-version.yaml
+    env:
+      ACTIONS_MANAGER_PAT: ${{ secrets.ACTIONS_MANAGER_PAT }}
   R-CMD-Check:
     if: ${{ always() }}
     needs: [increase-version]
