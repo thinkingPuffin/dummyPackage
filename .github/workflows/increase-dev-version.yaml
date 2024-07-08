@@ -15,7 +15,7 @@ jobs:
         id: app-token
         with:
           app-id: ${{ vars.ACTIONS_MANAGER_APPID }}
-          private-key: ${{ ACTIONS_MANAGER_PAT }}
+          private-key: ${{ secrets.ACTIONS_MANAGER_PAT }}
 
       - uses: actions/checkout@v4
         with:
