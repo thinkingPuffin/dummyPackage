@@ -30,17 +30,26 @@ jobs:
       - name: Install packages
         run: |
           install.packages("usethis")
-          install.packages("gert")
         shell: Rscript {0}
 
       - name: Change DESCRIPTION file and create tag
         run: |
-          new_version <- usethis:::bump_version()[["dev"]]
           if(usethis:::is_dev_version()){
-            desc::desc_set_version(version = new_version)
-            gert::git_tag_create(name = paste0("v", new_version), message = "new development version")
+            desc::desc_set_version(version = usethis:::bump_version()[["dev"]])
           }
         shell: Rscript {0}
+
+      - name: Get package version from DESCRIPTION file and set as environment variable
+        run: |
+          echo "PKG_VERSION=$(grep -oP '(?<=Version: )\d+\.\d+\.\d+\.*\d*' DESCRIPTION)" >> $GITHUB_ENV
+          echo "$PKG_VERSION"
+        shell: bash
+
+      - name: create a tag
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ env.PKG_VERSION }}
 
       - uses: EndBug/add-and-commit@v9
         if: ${{ success() }}
