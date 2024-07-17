@@ -38,7 +38,7 @@ jobs:
           new_version <- usethis:::bump_version()[["dev"]]
           if(usethis:::is_dev_version()){
             desc::desc_set_version(version = new_version)
-            gert::git_tag_create(name = paste0("v", new_version))
+            gert::git_tag_create(name = paste0("v", new_version), message = "new development version")
           }
         shell: Rscript {0}
 
