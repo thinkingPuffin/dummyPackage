@@ -30,7 +30,7 @@ jobs:
       - name: Install packages
         run: |
           install.packages("usethis")
-          install.packages("git2r")
+          install.packages("gert")
         shell: Rscript {0}
 
       - name: Change DESCRIPTION file and create tag
@@ -38,7 +38,7 @@ jobs:
           new_version <- usethis:::bump_version()[["dev"]]
           if(usethis:::is_dev_version()){
             desc::desc_set_version(version = new_version)
-            git2r::tag(name = paste0("v", new_version))
+            gert::git_tag_create(name = paste0("v", new_version))
           }
         shell: Rscript {0}
 
