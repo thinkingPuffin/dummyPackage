@@ -1,24 +1,40 @@
-on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
-
 
 name: Main-Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
 
 permissions: write-all
 
 jobs:
-  increase-version:
+  bump-dev-version: # only do that when actually merging in main/develop branch
     if: github.event_name != 'pull_request'
-    uses: ./.github/workflows/increase-dev-version.yaml
-    secrets: inherit
+    uses: Open-Systems-Pharmacology/Workflows/.github/workflows/bump_dev_version_tag_branch.yaml@main
+    with:
+      app-id: ${{ vars.VERSION_BUMPER_APPID }}
+    secrets:
+      private-key: ${{ secrets.VERSION_BUMPER_SECRET }}
+
+  update-core-files:
+    if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+    needs: [bump-dev-version]
+    uses: ./.github/workflows/update-core-files.yaml
+
   R-CMD-Check:
-    if: ${{ always() }}
-    needs: [increase-version]
-    uses: ./.github/workflows/R-CMD-check.yaml
+    if: ${{ !cancelled() }}
+    needs: [update-core-files]
+    uses: Open-Systems-Pharmacology/Workflows/.github/workflows/R-CMD-check-build.yaml@main
+
+  test-coverage:
+    if: ${{ !cancelled() }}
+    needs: [update-core-files]
+    uses: Felixmil/Workflows/.github/workflows/test-coverage.yaml@main
+    secrets: inherit
+
+
   pkgdown:
-    if: ${{ always() }}
-    needs: [increase-version]
-    uses:  ./.github/workflows/pkgdown.yaml
+    if: ${{ !cancelled() }}
+    needs: [update-core-files]
+    uses:  Open-Systems-Pharmacology/Workflows/.github/workflows/pkgdown.yaml@main
