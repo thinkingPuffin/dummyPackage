@@ -17,7 +17,6 @@ jobs:
     secrets:
       private-key: ${{ secrets.ACTIONS_MANAGER_PAT }}
 
-
   R-CMD-Check:
     if: ${{ !cancelled() }}
     needs: [bump-dev-version]
