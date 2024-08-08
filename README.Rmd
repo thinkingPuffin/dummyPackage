@@ -17,9 +17,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN status](https://www.r-pkg.org/badges/version/dummyPackage)](https://CRAN.R-project.org/package=dummyPackage)
-[![R-CMD-check](https://github.com/Felixmil/dummyPackage/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Felixmil/dummyPackage/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/Felixmil/dummyPackage/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Felixmil/dummyPackage?branch=main)
+[![Build](https://img.shields.io/github/actions/workflow/status/Felixmil/dummyPackage/main-workflow.yaml?branch=main&label=Build)](https://github.com/Felixmil/dummyPackage/actions/workflows/main-workflow.yaml)
+[![codecov](https://codecov.io/gh/thinkingPuffin/dummyPackage/graph/badge.svg?token=R8FTQD2CPD)](https://codecov.io/gh/thinkingPuffin/dummyPackage)
 <!-- badges: end -->
 
 dummyPackage is a package that does nothing. It is a dummy package.
