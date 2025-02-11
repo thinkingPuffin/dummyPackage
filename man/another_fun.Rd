@@ -13,7 +13,7 @@ another_fun(x)
 numeric output
 }
 \description{
-Another Function
+adds 3 to input
 }
 \examples{
 another_fun(1)
