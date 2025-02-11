@@ -19,6 +19,6 @@ library(dummyPackage)
 ```
 
 ```{r}
-dummyFunction(1)
+dummy_fun(1)
 ```
 
