@@ -1,5 +1,5 @@
 #' Another Function
-#' @description adds 2 to input
+#' @description adds 3 to input
 #'
 #' @param x  numeric input
 #'
@@ -9,5 +9,5 @@
 #' @examples
 #' another_fun(1)
 another_fun <- function(x) {
-  x + 2
+  x + 3
 }
